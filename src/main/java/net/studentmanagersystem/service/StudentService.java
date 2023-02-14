@@ -1,6 +1,6 @@
-package net.studentmanagersystem.services;
+package net.studentmanagersystem.service;
 
-import net.studentmanagersystem.entities.Student;
+import net.studentmanagersystem.model.Student;
 import org.springframework.stereotype.Service;
 import net.studentmanagersystem.repository.IStudentRepository;
 
@@ -23,5 +23,20 @@ public class StudentService implements IStudentService{
     @Override
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
+    }
+
+    @Override
+    public Student updateStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+    @Override
+    public Student getStudentById(Integer id) {
+        return studentRepository.findById(Math.toIntExact(id)).get();
+    }
+
+    @Override
+    public void deleteStudent(Student student) {
+        studentRepository.delete(student);
     }
 }

@@ -7,25 +7,43 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">Student Managment System</a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students}">Students Managment</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-                <h1>Add a Student</h1>
+                <h1>Add student</h1>
                 <div class="card-body">
-                    <form th:action="@{/students}" th:object="${student}" method="POST">
+                    <form th:action="@{/students/create}" th:object="${student}" method="POST">
                         <div class="form-group">
                             <label>First name</label>
-                            <input type="text" name="name" th:fiel="name" placeholder="Enter student name here">
+                            <input type="text" name="name" th:field="*{name}" placeholder="Enter student name here">
                         </div>
 
                         <div class="form-group">
                             <label>Last name</label>
-                            <input type="text" name="surname" th:fiel="surname" placeholder="Enter student lastname here">
+                            <input type="text" name="surname" th:field="*{surname}" placeholder="Enter student lastname here">
                         </div>
 
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" name="email" th:fiel="email" placeholder="Enter student email here">
+                            <input type="text" name="email" th:field="*{email}" placeholder="Enter student email here">
                         </div>
 
                         <div class="footer-body">

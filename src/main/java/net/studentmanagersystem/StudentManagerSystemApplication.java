@@ -1,12 +1,10 @@
 package net.studentmanagersystem;
 
-import net.studentmanagersystem.entities.Student;
 import net.studentmanagersystem.repository.IStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class StudentManagerSystemApplication implements CommandLineRunner {

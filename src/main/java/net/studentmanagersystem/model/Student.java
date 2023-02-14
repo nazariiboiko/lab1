@@ -1,4 +1,4 @@
-package net.studentmanagersystem.entities;
+package net.studentmanagersystem.model;
 
 import jakarta.persistence.*;
 
@@ -30,6 +30,7 @@ public class Student {
     }
 
     public int getId() {
+        //Object
         return id;
     }
 
