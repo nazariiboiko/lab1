@@ -1,42 +1,12 @@
 package net.studentmanagersystem.service;
 
+import net.studentmanagersystem.dto.StudentDto;
 import net.studentmanagersystem.model.Student;
-import org.springframework.stereotype.Service;
-import net.studentmanagersystem.repository.IStudentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-@Service
-public class StudentService implements IStudentService{
-
-    private IStudentRepository studentRepository;
-
-    public StudentService(IStudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
-
-    @Override
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
-    }
-
-    @Override
-    public Student saveStudent(Student student) {
-        return studentRepository.save(student);
-    }
-
-    @Override
-    public Student updateStudent(Student student) {
-        return studentRepository.save(student);
-    }
-
-    @Override
-    public Student getStudentById(Integer id) {
-        return studentRepository.findById(Math.toIntExact(id)).get();
-    }
-
-    @Override
-    public void deleteStudent(Student student) {
-        studentRepository.delete(student);
-    }
+public interface StudentService {
+    Page<StudentDto> getAllStudents(Pageable pageable);
 }

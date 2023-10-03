@@ -1,6 +1,6 @@
 package net.studentmanagersystem;
 
-import net.studentmanagersystem.repository.IStudentRepository;
+import net.studentmanagersystem.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +14,7 @@ public class StudentManagerSystemApplication implements CommandLineRunner {
     }
 
     @Autowired
-    private IStudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
 
     @Override

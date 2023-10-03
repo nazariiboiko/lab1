@@ -1,54 +1,32 @@
 package net.studentmanagersystem.controller;
 
-import net.studentmanagersystem.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.RequiredArgsConstructor;
+import net.studentmanagersystem.dto.StudentDto;
 import net.studentmanagersystem.service.StudentService;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/students")
 public class StudentController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
-    @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    @GetMapping
+    public ResponseEntity<Page<StudentDto>> getStudents(
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "20") int size)
+    {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<StudentDto> res = studentService.getAllStudents(pageable);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
-
-    @GetMapping("/students")
-    public String listStudents(Model model) {
-        model.addAttribute("students", studentService.getAllStudents());
-        return "students";
-    }
-
-    @GetMapping("/students/new")
-    public String createStudentForm(Model model){
-        Student student = new Student();
-        model.addAttribute("student", student);
-        return "create_student";
-    }
-
-    @PostMapping("/students/create")
-    public String createStudent(@ModelAttribute("student") Student student){
-        studentService.saveStudent(student);
-        return "redirect:/students";
-    }
-
-    @GetMapping("/students/edit/{id}")
-    public String editStudentForm(@PathVariable Integer id, Model model) {
-        model.addAttribute("student",studentService.getStudentById(id));
-        return "update_student";
-    }
-
-    @PostMapping("/students/delete/{id}")
-    public String deleteStudent(@PathVariable Integer id) {
-        //studentService
-        return "redirect:/students";
-    }
-
 }
