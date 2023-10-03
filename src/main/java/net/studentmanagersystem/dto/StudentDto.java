@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDto {
-    private Integer id;
+    private int id;
     private String name;
     private String surname;
     private String email;
     private String phoneNumber;
     private String sex;
-    private String course;
+    private int course;
     private String nameGroup;
     private String numberGroup;
 }

@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface StudentService {
     Page<StudentDto> getAllStudents(Pageable pageable);
+
+    void add(StudentDto studentDto);
 }

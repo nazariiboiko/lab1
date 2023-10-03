@@ -13,7 +13,8 @@ import lombok.NoArgsConstructor;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id")
+    private int id;
 
     @Column(name = "firstname")
     private String name;
@@ -31,7 +32,7 @@ public class Student {
     private String sex;
 
     @Column(name = "course")
-    private String course;
+    private int course;
 
     @Column(name = "name_group")
     private String nameGroup;
